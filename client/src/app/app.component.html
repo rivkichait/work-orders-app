@@ -1,0 +1,146 @@
+<div class="page-container">
+
+  <header class="header">
+    <div class="header-content">
+      <img src="assets/chait.jpg" alt="Handyman Logo" class="logo" style="cursor:pointer;"
+        (click)="navigateToSection('home')" />
+      <nav class="nav-bar">
+        <a class="nav-link" [class.active]="activeSection === 'home'" (click)="navigateToSection('home')">HOME</a>
+        <a class="nav-link" [class.active]="activeSection === 'about'" (click)="navigateToSection('about')">ABOUT</a>
+        <a class="nav-link" [class.active]="activeSection === 'services'" routerLink="/services">SERVICES</a>
+        <a class="nav-link" [class.active]="activeSection === 'gallery'" routerLink="/gallery">GALLERY</a>
+        <a class="nav-link" [class.active]="activeSection === 'reviews'"
+          (click)="navigateToSection('reviews')">REVIEWS</a>
+        <a class="nav-link" [class.active]="activeSection === 'contact'"
+          (click)="navigateToSection('contact')">CONTACT</a>
+        <!-- 🔐 Login Trigger -->
+        <a *ngIf="!isLoggedIn" (click)="openAuthModal()" class="sign-in-link">
+          <span class="sign-in-icon"><i class="fas fa-sign-in-alt"></i></span>
+          <span class="sign-in-text">Sign in</span>
+        </a>
+        <span *ngIf="isLoggedIn" class="user-name" (click)="toggleUserMenu()" tabindex="0">
+          ✨ {{ name }}
+          <div *ngIf="showUserMenu" class="user-menu-popup">
+            <div class="user-menu-fullname">{{ fullName }}</div>
+            <button (click)="viewRequests()" class="user-menu-view-requests-btn">View Requests</button>
+            <button (click)="logout()" class="user-menu-logout-btn">Logout</button>
+          </div>
+        </span>
+      </nav>
+    </div>
+
+  </header>
+
+  <main class="main-content">
+    <router-outlet></router-outlet>
+  </main>
+
+  <footer class="footer-alt">
+    <div class="footer-alt-main footer-alt-row">
+      <div class="footer-alt-brand">
+        <span class="footer-alt-title">Chait Handyman and Carpenter</span>
+        <div class="footer-alt-location-icons-row">
+          <span class="footer-alt-location">Gold Coast 4217</span>
+          <span class="footer-alt-divider">|</span>
+          <div class="footer-alt-brand-icons-inline">
+            <a href="tel:0484711414" aria-label="Phone" class="footer-alt-brand-icon"><i
+                class="fas fa-phone-alt"></i></a>
+            <a href="mailto:chaitcarpenter@gmail.com" aria-label="Email" class="footer-alt-brand-icon"><i
+                class="fas fa-envelope"></i></a>
+            <a href="https://www.instagram.com/chaitcarprnter/" target="_blank" aria-label="Instagram"
+              class="footer-alt-brand-icon"><i class="fab fa-instagram"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-alt-center">
+        <nav class="footer-alt-nav">
+          <a class="footer-nav-link" (click)="navigateToSection('home')">Home</a>
+          <a class="footer-nav-link" (click)="navigateToSection('about')">About</a>
+          <a class="footer-nav-link" routerLink="/services" (click)="jumpToTopIfOnPage('/services')">Services</a>
+          <a class="footer-nav-link" routerLink="/gallery" (click)="jumpToTopIfOnPage('/gallery')">Gallery</a>
+          <a class="footer-nav-link" (click)="navigateToSection('contact')">Contact</a>
+        </nav>
+      </div>
+    </div>
+    <div class="footer-alt-bottom">
+      <span>© 2025 Chait Handyman and Carpenter. All rights reserved.</span>
+    </div>
+  </footer>
+
+  <!-- Auth Modal Overlay and Popup -->
+  <div *ngIf="showAuthModal" class="auth-modal-overlay" (click)="closeAuthModal()"></div>
+  <div *ngIf="showAuthModal" class="auth-modal">
+    <button class="close-btn" (click)="closeAuthModal()">×</button>
+    <div class="auth-modal-tabs">
+      <button [class.active]="authMode==='login'" (click)="authMode='login'">Login</button>
+      <button [class.active]="authMode==='register'" (click)="authMode='register'">Register</button>
+    </div>
+    <!-- LOGIN FORM -->
+    <form *ngIf="authMode==='login'" (ngSubmit)="onLogin()" #loginForm="ngForm" novalidate>
+      <label for="loginEmail">Email <span class="required">*</span></label>
+      <input id="loginEmail" type="email" [(ngModel)]="username" name="username" #loginEmail="ngModel" required />
+      <div *ngIf="loginForm.submitted && loginEmail.invalid" class="error-msg">Email is required</div>
+
+      <label for="loginPassword">Password <span class="required">*</span></label>
+      <div class="password-wrapper">
+        <input id="loginPassword" [type]="showPassword ? 'text' : 'password'" [(ngModel)]="password" name="password"
+          placeholder="Password" #loginPassword="ngModel" required />
+        <button type="button" class="eye-btn" (click)="showPassword = !showPassword" tabindex="-1">
+          <i class="fas" [ngClass]="showPassword ? 'fa-eye-slash' : 'fa-eye'"></i>
+        </button>
+      </div>
+      <div *ngIf="loginForm.submitted && loginPassword.invalid" class="error-msg">Password is required</div>
+
+      <a class="forgot-link" href="#" (click)="forgotPassword($event)">Forgot your password?</a>
+      <div class="remember-me-row">
+        <input type="checkbox" id="rememberMe" [(ngModel)]="rememberMe" name="rememberMe" />
+        <label for="rememberMe">Remember me</label>
+      </div>
+      <button type="submit" class="auth-btn">Login</button>
+      <div *ngIf="loginMessage" class="error-msg">{{ loginMessage }}</div>
+    </form>
+
+    <!-- REGISTER FORM -->
+    <form *ngIf="authMode==='register'" (ngSubmit)="register()" #registerForm="ngForm" novalidate>
+      <label for="registerFirstName">First Name <span class="required">*</span></label>
+      <input id="registerFirstName" type="text" name="firstName" [(ngModel)]="registerData.firstName"
+        #registerFirstName="ngModel" required>
+      <div *ngIf="registerForm.submitted && registerFirstName.invalid" class="error-msg">First name is required</div>
+
+      <label for="registerLastName">Last Name <span class="required">*</span></label>
+      <input id="registerLastName" type="text" name="lastName" [(ngModel)]="registerData.lastName"
+        #registerLastName="ngModel" required>
+      <div *ngIf="registerForm.submitted && registerLastName.invalid" class="error-msg">Last name is required</div>
+
+      <label for="registerEmail">Email <span class="required">*</span></label>
+      <input id="registerEmail" type="email" name="email" [(ngModel)]="registerData.email" #registerEmail="ngModel"
+        required>
+      <div *ngIf="registerForm.submitted && registerEmail.invalid" class="error-msg">Email is required</div>
+
+      <label for="registerPhone">Phone <span class="required">*</span></label>
+      <input id="registerPhone" type="tel" name="phone" [(ngModel)]="registerData.phone" #registerPhone="ngModel"
+        required>
+      <div *ngIf="registerForm.submitted && registerPhone.invalid" class="error-msg">Phone is required</div>
+
+      <label for="registerPassword">Password <span class="required">*</span></label>
+      <div class="password-wrapper">
+        <input id="registerPassword" [type]="showRegisterPassword ? 'text' : 'password'" name="password"
+          [(ngModel)]="registerData.password" placeholder="Password" #registerPassword="ngModel" required />
+        <button type="button" class="eye-btn" (click)="showRegisterPassword = !showRegisterPassword" tabindex="-1">
+          <i class="fas" [ngClass]="showRegisterPassword ? 'fa-eye-slash' : 'fa-eye'"></i>
+        </button>
+      </div>
+      <div *ngIf="registerForm.submitted && registerPassword.invalid" class="error-msg">Password is required</div>
+
+      <button type="submit" class="auth-btn">Register</button>
+    </form>
+  </div>
+
+  <div *ngIf="showForgotPopup" class="forgot-popup-overlay">
+    <div class="forgot-popup">
+      <div [innerHTML]="forgotPopupMessage"></div>
+      <button *ngIf="forgotPopupAction === 'ok'" (click)="showForgotPopup = false">OK</button>
+      <button *ngIf="forgotPopupAction === 'register'" (click)="switchToRegister()">Register now</button>
+    </div>
+  </div>
+</div>

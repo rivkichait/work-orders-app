@@ -1,0 +1,12 @@
+<div class="gallery-wrapper">
+  <h1 class="gallery-title">Gallery</h1>
+  <div class="gallery-row">
+    <div 
+      *ngFor="let img of galleryImages; let i = index" 
+      class="gallery-item animate__animated animate__fadeIn"
+      [style.animationDelay]="(i * 0.1) + 's'"
+    >
+      <img [src]="img" alt="Gallery image" />
+    </div>
+  </div>
+</div> 

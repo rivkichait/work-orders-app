@@ -1,0 +1,122 @@
+:host {
+  display: block;
+  background: #fff;
+  width: 100%;
+  min-height: calc(100vh - 6.25rem);
+  margin-top: 0;
+  padding-top: 0;
+}
+
+.gallery-wrapper {
+  padding: 3rem 10rem 4rem 10rem;
+  margin: 0 auto;
+  box-sizing: border-box;
+  min-height: fit-content;
+}
+
+.gallery-title {
+  font-size: 2.5rem;
+  color: #d66609;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.gallery-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.625rem;
+}
+
+
+.gallery-item {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: 0.375rem;
+  box-shadow: 0 0.125rem 0.625rem rgba(0,0,0,0.1);
+  animation-fill-mode: both;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .gallery-wrapper {
+    padding: 1.5rem 5rem;
+  }
+  
+  .gallery-item {
+    aspect-ratio: 3 / 2;
+  }
+  .gallery-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+  }
+}
+
+
+
+@media (max-width: 600px) {
+  .gallery-wrapper {
+    padding: 1rem 1rem 2rem 1rem;
+    min-height: calc(100vh - 2.375rem);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+  .gallery-title {
+    font-size: 1.8rem;
+    color: #d66609;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    margin-top: 1rem;
+  }
+  .gallery-row {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+    width: 100%;
+  }
+  .gallery-item {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    border-radius: 0.5rem;
+    box-shadow: 0 0.125rem 0.5rem rgba(0,0,0,0.15);
+    animation-fill-mode: both;
+  }
+  .gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease;
+  }
+  .gallery-item:hover img {
+    transform: scale(1.05);
+  }
+}
+
+@media (max-width: 480px) {
+  .gallery-wrapper {
+    padding: 0.5rem 1.5rem 1.5rem 1.5rem;
+  }
+  .gallery-title {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    margin-top: 0.5rem;
+  }
+  .gallery-row {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+  }
+  .gallery-item {
+    aspect-ratio: 1 / 1;
+    border-radius: 0.375rem;
+  }
+}

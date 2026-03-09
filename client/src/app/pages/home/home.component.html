@@ -1,0 +1,322 @@
+<div class="home-sections-container">
+  <section id="home" class="carousel-wrapper">
+    <div style="position: relative; width: 100%; max-width: 100vw; margin: 0 auto; display: block;">
+      <img
+        [src]="carouselImages[currentCarouselIndex]"
+        alt="Slide"
+        class="responsive-home-image animate__animated animate__fadeIn"
+      />
+      <button *ngIf="carouselImages[currentCarouselIndex] === 'assets/pic3.png'"
+        (click)="goToServices()"
+        class="show-more-btn"
+        style="position: absolute; bottom: 24px; background: #f3730b; color: white; border: none; border-radius: 8px; padding: 10px 22px; font-size: 1rem; font-weight: 600; box-shadow: 0 2px 8px rgba(0,0,0,0.12); cursor: pointer; transition: background 0.2s;">
+        Show more ➡️
+      </button>
+      <div class="carousel-dots">
+        <span
+          *ngFor="let img of carouselImages; let i = index"
+          class="dot"
+          [class.active]="i === currentCarouselIndex"
+          (click)="goToImage(i)"
+        ></span>
+      </div>
+    </div>
+  </section>
+  
+
+  <section id="about" class="section full-section about-section">
+    <div class="about-columns">
+      <div class="about-content">
+        <i class="fas fa-tools about-icon"></i>
+        <h2 class="animate__animated animate__fadeInDown">About Our Services</h2>
+        <p>At CHAIT HANDYMAN AND CARPENTER, we're a skilled team with over a decade of experience, known for precision, professionalisam and a personal touch. </p>
+        <p>We offer a wide range of services for homes and busniesses, including indoor and outdoor carpentry, repairs, maintenance and renovations. </p>
+        <p>Our clients know they're in good hands with personalised service, quality workmanship and results that stand the test of time.</p>
+      </div>
+      <div class="about-why">
+        <h3>WHY TO CHOOSE CHAIT?</h3>
+        <ul class="why-list">
+          <li *ngFor="let reason of whyList">
+            <i class="fas {{ reason.icon }} why-icon"></i>
+            <div>
+              <h1>{{ reason.title }}</h1>
+              <p>{{ reason.description }}</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="reviews" class="section full-section d-flex flex-column justify-content-center align-items-center text-center">
+    <div class="reviews-header">
+      <h2>Customer Reviews</h2>
+      <div class="rating-display">
+        <span class="rating-number">5</span>
+        <div class="stars">
+          <span class="star">★</span>
+          <span class="star">★</span>
+          <span class="star">★</span>
+          <span class="star">★</span>
+          <span class="star">★</span>
+        </div>
+        <a href="https://www.google.com/search?kgmid=/g/11xf3sw6y5&hl=iw-IL&q=chait+handyman+and+carpenter&shndl=30&shem=lcuae,lspt16&source=sh/x/loc/osrp/m5/1&kgs=8657f3b57d848b63#lrd=0x60648a95ee942055:0xda5ebf6a6b2d352e,1,,,," target="_blank" class="google-reviews-link">
+          View on Google
+        </a>
+      </div>
+    </div>
+    <div class="container">
+      <div class="reviews-carousel-container">
+        <button class="carousel-arrow left-arrow" (click)="scrollReviews('left')" *ngIf="showLeftArrow">
+          <svg width="16" height="16" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+            <polyline points="14,4 7,11 14,18" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          </svg>
+        </button>
+        
+        <div class="reviews-carousel">
+          <div class="google-review-card">
+            <div class="review-header">
+              <div class="reviewer-info">
+                <div class="reviewer-avatar">A</div>
+                <div class="reviewer-details">
+                  <div class="reviewer-name">Avi Cohen</div>
+                  <div class="review-date">2 months ago</div>
+                </div>
+              </div>
+              <div class="review-stars">
+                <span class="star">★</span>
+                <span class="star">★</span>
+                <span class="star">★</span>
+                <span class="star">★</span>
+                <span class="star">★</span>
+              </div>
+            </div>
+            <div class="review-text">
+              "Excellent work! Fixed our kitchen cabinets perfectly and was very professional. Highly recommend!"
+            </div>
+          </div>
+
+          <div class="google-review-card">
+            <div class="review-header">
+              <div class="reviewer-info">
+                <div class="reviewer-avatar">S</div>
+                <div class="reviewer-details">
+                  <div class="reviewer-name">Sarah Levy</div>
+                  <div class="review-date">1 month ago</div>
+                </div>
+              </div>
+              <div class="review-stars">
+                <span class="star">★</span>
+                <span class="star">★</span>
+                <span class="star">★</span>
+                <span class="star">★</span>
+                <span class="star">★</span>
+              </div>
+            </div>
+            <div class="review-text">
+              "Great service! Installed our new doors quickly and efficiently. Very reliable and honest pricing."
+            </div>
+          </div>
+
+          <div class="google-review-card">
+            <div class="review-header">
+              <div class="reviewer-info">
+                <div class="reviewer-avatar">M</div>
+                <div class="reviewer-details">
+                  <div class="reviewer-name">Moshe Rosenberg</div>
+                  <div class="review-date">3 weeks ago</div>
+                </div>
+              </div>
+              <div class="review-stars">
+                <span class="star">★</span>
+                <span class="star">★</span>
+                <span class="star">★</span>
+                <span class="star">★</span>
+                <span class="star">★</span>
+              </div>
+            </div>
+            <div class="review-text">
+              "Professional carpenter with excellent skills. Built us a beautiful custom bookshelf. Will definitely use again!"
+            </div>
+          </div>
+
+          <div class="google-review-card">
+            <div class="review-header">
+              <div class="reviewer-info">
+                <div class="reviewer-avatar">D</div>
+                <div class="reviewer-details">
+                  <div class="reviewer-name">David Green</div>
+                  <div class="review-date">1 week ago</div>
+                </div>
+              </div>
+              <div class="review-stars">
+                <span class="star">★</span>
+                <span class="star">★</span>
+                <span class="star">★</span>
+                <span class="star">★</span>
+                <span class="star">★</span>
+              </div>
+            </div>
+            <div class="review-text">
+              "Amazing work on our pergola! Very skilled and professional. Highly recommended for any carpentry work."
+            </div>
+          </div>
+
+          <div class="google-review-card">
+            <div class="review-header">
+              <div class="reviewer-info">
+                <div class="reviewer-avatar">R</div>
+                <div class="reviewer-details">
+                  <div class="reviewer-name">Rachel Weiss</div>
+                  <div class="review-date">2 weeks ago</div>
+                </div>
+              </div>
+              <div class="review-stars">
+                <span class="star">★</span>
+                <span class="star">★</span>
+                <span class="star">★</span>
+                <span class="star">★</span>
+                <span class="star">★</span>
+              </div>
+            </div>
+            <div class="review-text">
+              "Fixed our broken fence perfectly. Very reliable and did exactly what he promised. Great communication!"
+            </div>
+          </div>
+        </div>
+
+        <button class="carousel-arrow right-arrow" (click)="scrollReviews('right')" *ngIf="showRightArrow">
+          <svg width="16" height="16" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+            <polyline points="8,4 15,11 8,18" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact-unified-section">
+    <div class="contact-unified-card">
+      <div class="contact-unified-header">
+        <h2>Contact Chait Handyman and Carpenter</h2>
+        <p>Get in touch for professional handyman & carpentry services</p>
+      </div>
+      <div class="contact-unified-content">
+        <div style="display: flex; flex-direction: column; align-items: stretch; flex: 1 1 320px;">
+          <form class="contact-unified-form" novalidate (ngSubmit)="onSubmit()">
+            <div class="mb-2">
+              <label for="Name" class="form-label fw-medium text-dark mb-1" style="font-size: 0.75rem;">Name *</label>
+              <input type="text" id="Name" name="Name" class="form-control form-control-sm"
+                style="border-radius: 8px; border: 1px solid #e0e0e0; padding: 4px 8px; font-size: 0.75rem; background: #fafafa;"
+                [(ngModel)]="contact.name"
+                (input)="nameTouched = true"
+                (blur)="nameTouched = true"
+                required minlength="2" 
+                placeholder="Your full name" />
+              <div *ngIf="(nameTouched || showNameError) && (!contact.name.trim() || !isNameValid())" class="text-danger small mt-1" style="font-size: 0.65rem;">
+                <div *ngIf="!contact.name.trim()">Name is required</div>
+                <div *ngIf="contact.name.trim() && !isNameValid()">Name must be at least 2 characters and contain only letters and spaces</div>
+              </div>
+            </div>
+            <div class="mb-2">
+              <label for="Phone" class="form-label fw-medium text-dark mb-1" style="font-size: 0.75rem;">Phone *</label>
+              <input type="tel" id="Phone" name="Phone" class="form-control form-control-sm"
+                style="border-radius: 8px; border: 1px solid #e0e0e0; padding: 4px 8px; font-size: 0.75rem; background: #fafafa;"
+                [(ngModel)]="contact.phone"
+                (input)="phoneTouched = true"
+                (blur)="phoneTouched = true"
+                required 
+                placeholder="Your phone number" />
+              <div *ngIf="(phoneTouched || showPhoneError) && (!contact.phone.trim() || !isPhoneValid())" class="text-danger small mt-1" style="font-size: 0.65rem;">
+                <div *ngIf="!contact.phone.trim()">Phone number is required</div>
+                <div *ngIf="contact.phone.trim() && !isPhoneValid()">Phone number must be at least 7 digits and contain only numbers, spaces, dashes, and parentheses</div>
+              </div>
+            </div>
+            <div class="mb-2">
+              <label for="Email" class="form-label fw-medium text-dark mb-1" style="font-size: 0.75rem;">Email *</label>
+              <input type="email" id="Email" name="Email" class="form-control form-control-sm"
+                style="border-radius: 8px; border: 1px solid #e0e0e0; padding: 4px 8px; font-size: 0.75rem; background: #fafafa;"
+                [(ngModel)]="contact.email"
+                (input)="emailTouched = true"
+                (blur)="emailTouched = true"
+                required 
+                placeholder="Your email address" />
+              <div *ngIf="(emailTouched || showEmailError) && (!contact.email.trim() || !isEmailValid())" class="text-danger small mt-1" style="font-size: 0.65rem;">
+                <div *ngIf="!contact.email.trim()">Email address is required</div>
+                <div *ngIf="contact.email.trim() && !isEmailValid()">Please enter a valid email address (e.g., user@example.com)</div>
+              </div>
+            </div>
+            <div class="mb-2">
+              <label for="Service" class="form-label fw-medium text-dark mb-1" style="font-size: 0.75rem;">Service *</label>
+              <select id="Service" name="Service" class="form-control form-control-sm"
+                style="border-radius: 8px; border: 1px solid #e0e0e0; padding: 4px 8px; font-size: 0.75rem; background: #fafafa;"
+                [(ngModel)]="contact.service"
+                (change)="serviceTouched = true"
+                (blur)="serviceTouched = true"
+                required>
+                <option value="" disabled selected>Select a service</option>
+                <option *ngFor="let s of servicesList" [value]="s">{{ s }}</option>
+              </select>
+              <div *ngIf="(serviceTouched || showServiceError) && !contact.service" class="text-danger small mt-1" style="font-size: 0.65rem;">
+                Service is required
+              </div>
+            </div>
+            <div class="mb-2">
+              <label for="message" class="form-label fw-medium text-dark mb-1" style="font-size: 0.75rem;">Service Details *</label>
+              <textarea id="message" name="message" rows="2" class="form-control form-control-sm" 
+                style="border-radius: 8px; border: 1px solid #e0e0e0; padding: 4px 8px; font-size: 0.75rem; background: #fafafa; resize: none;"
+                [(ngModel)]="contact.message"
+                (input)="messageTouched = true"
+                (blur)="messageTouched = true"
+                required
+                placeholder="Describe your carpentry or repair needs..."></textarea>
+              <div *ngIf="(messageTouched || showMessageError) && (!contact.message.trim() || !isMessageValid())" class="text-danger small mt-1" style="font-size: 0.65rem;">
+                <div *ngIf="!contact.message.trim()">Service details are required</div>
+                <div *ngIf="contact.message.trim() && !isMessageValid()">Service details must be at least 10 characters long</div>
+              </div>
+            </div>
+            <div class="text-center">
+              <button type="submit" class="btn btn-sm px-3 py-1 fw-medium" 
+                style="border-radius: 8px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border: none; color: white; font-size: 0.75rem; min-width: 100px; box-shadow: 0 3px 10px rgba(102, 126, 234, 0.3);">
+                Request Quote For Free
+              </button>
+            </div>
+          </form>
+        </div>
+        <div class="contact-unified-details">
+          <div>
+            <i class="fas fa-map-marker-alt"></i>
+            <span>Gold Coast 4217</span>
+          </div>
+          <div>
+            <i class="fas fa-phone-alt"></i>
+            <a href="tel:0484711414">0484 711 414</a>
+          </div>
+          <div>
+            <i class="fas fa-envelope"></i>
+            <a href="mailto:chaitcarpenter@gmail.com">chaitcarpenter@gmail.com</a>
+          </div>
+          <div class="contact-unified-socials">
+            <a href="https://www.instagram.com/chaitcarprnter/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          </div>
+          <div class="contact-unified-map">
+            <iframe src="https://www.google.com/maps?q=Gold+Coast+4217&hl=en&output=embed" width="100%" height="90" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="showPopup" class="popup-message" role="alert" aria-live="assertive"
+      [ngStyle]="isError ? {
+        'background': '#ffe6e6',
+        'color': '#a11a1a',
+        'border': '1.5px solid #a11a1a'
+      } : {
+        'background': '#e6ffe6',
+        'color': '#1a7f1a',
+        'border': '1.5px solid #1a7f1a'
+      }"
+      style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); max-width: 400px; width: 90vw; border-radius: 8px; padding: 18px 18px 12px 18px; font-size: 1rem; font-weight: 600; text-align: center; box-shadow: 0 4px 32px rgba(0,0,0,0.18); z-index: 9999; display: block;">
+      <div style="margin-bottom: 12px;" [innerHTML]="successMessage"></div>
+      <button (click)="showPopup = false" style="padding: 4px 18px; border-radius: 6px; border: none; background: #667eea; color: white; font-size: 1rem; font-weight: 500; cursor: pointer;">OK</button>
+    </div>
+  </section>
+</div>

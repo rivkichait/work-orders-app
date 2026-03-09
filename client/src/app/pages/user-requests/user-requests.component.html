@@ -1,0 +1,31 @@
+<h2 style="text-align: center; margin-bottom: 2rem; margin-top: 2rem;">Your Requests</h2>
+
+<div *ngIf="loading" class="centered">Loading...</div>
+<div *ngIf="error" class="error-msg centered">{{ error }}</div>
+
+<div class="requests-table-wrapper" *ngIf="!loading && !error">
+  <table class="requests-table" *ngIf="requests.length; else noRequests">
+    <thead>
+      <tr>
+        <th>Service</th>
+        <th class="message-col">Message</th>
+        <th>Date of Request</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let req of requests">
+        <td>{{ req.service }}</td>
+        <td class="message-col">{{ req.message }}</td>
+        <td>
+          <span *ngIf="req.created_at; else noDate">
+            {{ req.created_at | date:'short' }}
+          </span>
+          <ng-template #noDate>-</ng-template>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <ng-template #noRequests>
+    <div class="centered" style="padding: 2em;">No requests found.</div>
+  </ng-template>
+</div>

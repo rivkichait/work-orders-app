@@ -1,0 +1,12 @@
+:root {
+  --primary-blue: #0074d9;
+  --dark-blue: #003366;
+  --primary-orange: #f3730b;
+  --mid-orange: #d86a06;
+  --dark-orange: #c25100;
+  --gray-icon: #888888;
+  --light-orange: #ffe0c2;
+  --background-light: #fff8f0;
+  --background-gradient: linear-gradient(135deg, #fff8f0 60%, #ffe0c2 100%);
+  --light-blue-gray: #b3c7e6;
+} 

@@ -1,0 +1,114 @@
+.user-request-item {
+  margin-bottom: 1.2em;
+  padding-bottom: 0.7em;
+}
+hr {
+  border: none;
+  border-top: 1px solid #eee;
+  margin: 0.5em 0;
+}
+
+.centered {
+  text-align: center;
+}
+
+.requests-table-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 300px;
+  margin-bottom: 4rem;
+  padding-left: 0;
+  padding-right: 0;
+  overflow-x: auto;
+}
+
+@media (min-width: 600px) and (max-width: 1024px) {
+  .requests-table-wrapper {
+    padding-left: 5rem;
+    padding-right: 5rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .requests-table-wrapper {
+    padding-left: 2rem;
+    padding-right: 2rem;
+    overflow-x: auto;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  .requests-table {
+    width: 100%;
+    min-width: 0 !important;
+    max-width: 100%;
+    table-layout: auto;
+    box-sizing: border-box;
+  }
+  .requests-table th,
+  .requests-table td {
+    padding: 0.7em 0.5em;
+    font-size: 0.98em;
+    word-break: break-word;
+    white-space: normal;
+    max-width: 1px;
+  }
+  .requests-table th.message-col,
+  .requests-table td.message-col {
+    width: 70px;
+    min-width: 40px;
+    max-width: 70px;
+  }
+}
+
+.requests-table {
+  table-layout: fixed;
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 600px;
+  max-width: 700px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+  overflow: hidden;
+}
+
+.requests-table th, .requests-table td {
+  padding: 1em 1.5em;
+  text-align: left;
+  vertical-align: top;
+}
+
+.requests-table th.message-col,
+.requests-table td.message-col {
+  min-width: 200px;
+  max-width: 400px;
+  width: 50%;
+}
+
+.requests-table td.message-col {
+  white-space: normal;
+  word-break: break-word;
+}
+
+.requests-table th {
+  background: #f3730b;
+  color: #fff;
+  font-size: 1.1em;
+  font-weight: 700;
+  border-bottom: 2px solid #e0e0e0;
+}
+
+.requests-table tr:nth-child(even) {
+  background: #f7fafc;
+}
+
+.requests-table tr:hover {
+  background: #ffe5c2;
+}
+
+.requests-table td {
+  font-size: 1em;
+  color: #222;
+  border-bottom: 1px solid #eee;
+}

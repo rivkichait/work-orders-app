@@ -1,0 +1,21 @@
+<div class="services-container">
+  <h1 style="font-size:2.5rem; color:#d86a06; text-align:center; margin-bottom:1.5rem;">Our Services</h1>
+  <p class="lead mb-4" style="text-align:center; font-size:1.2rem;">Welcome to our dedicated services page! Here you can find all the professional handyman and carpentry services we offer:</p>
+
+  <section id="services" class="section full-section">
+    <div class="services-center-wrapper">
+      <div class="row justify-content-center">
+        <div
+          class="col-6 col-md-6 col-lg-4"
+          *ngFor="let service of Services"
+        >
+          <div class="Services">
+            <i class="fas {{service.icon}} service-icon"></i>
+            <h4>{{ service.title }}</h4>
+            <p>{{ service.description }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
