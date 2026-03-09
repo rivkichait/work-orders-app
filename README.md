@@ -1,93 +1,161 @@
-# WorkOrdersApp
+# Request Quote Web Application
 
-Full-Stack Web Application for Service and Quote Management
+A full-stack web application that allows customers to submit service quote requests.  
+The system stores requests in a MySQL database and sends notifications to the administrator via email and Google Sheets.  
+Admin users can log in, manage requests, and view submitted quotes in a secure dashboard.
 
-WorkOrdersApp is a complete full-stack project built with Angular (Frontend) and Node.js + Express + MySQL (Backend). It demonstrates end-to-end development, including user authentication, automated workflows, and responsive UI design.
+---
 
-##🔹 Features
+## Technologies
 
-### Home Page – includes:
-About: Information about the business
-Customer Reviews: Display client testimonials
-Contact Form: Sends automated emails to both client and business, updates Google Sheets automatically
+**Frontend**
+- Angular
+- Angular Router
+- Animate.css
+- Font Awesome
+- Google Fonts (Rubik)
 
-### Services Page – lists all services offered
+**Backend**
+- Node.js
+- Express.js
+- Express Session (for authentication)
 
-### Gallery Page – displays business images
+**Database**
+- MySQL
 
-User Login & Account Management – secure login system with session management
+**Integrations**
+- Nodemailer (Email notifications)
+- Google Sheets API
 
-Backend Automation – manages requests, validates users, stores data in database, and sends automated notifications
+---
 
-##🔹 Tech Stack
+## Features
 
-Frontend: Angular, TypeScript, HTML, CSS, Tailwind
-Backend: Node.js, Express
-Database: MySQL, Google Sheets API
-Authentication: JWT, Express Sessions
-Other Tools: Nodemailer, REST APIs, Git, Agile Development
+- Customer service request form
+- Data stored in MySQL database
+- Admin login system with session authentication
+- View submitted requests in admin dashboard
+- Email notifications to administrator
+- Automatic logging of requests to Google Sheets
+- Dynamic content rendering in Angular with `ngFor`
+- Responsive frontend design with Animate.css
+- Font Awesome icons and Google Fonts integration
 
-Project Structure
-client/                  # Angular frontend
-├── src/
-│   ├── app/             # Components, pages, services
-│   ├── assets/          # Images, icons
-│   └── styles.css       # Global styles
-├── angular.json
-└── package.json
+---
 
-server/                  # Node.js backend
-├── routes/              # API routes
-├── models/              # Database models
-├── server.js            # Express server
-├── package.json
-└── .env-example         # Example environment variables
+## Project Structure
 
-##🔹 How It Works
+request-quote-app
+│
+├── client/              # Angular frontend
+│   ├── src/
+│   └── package.json
+│
+├── server/              # Node.js backend
+│   ├── server.js
+│   ├── package.json
+│   └── setup-database.sql
+│
+└── README.md
 
-A user fills out the contact or quote request form on the website
+---
 
-The server sends automated emails to both the client and the business
+## Setup Instructions
 
-Request details are automatically updated in Google Sheets
+### 1. Install Dependencies
 
-The Login system allows clients to track their requests
-
-##🔹 Getting Started
-
-Clone the repository:
-
-git clone <repo-link>
-
-Install dependencies:
-
+**Backend:**
+```bash
+cd server
+npm install
+```
+**Frontend:**
+```bash
 cd client
 npm install
-cd ../server
-npm install
+```
 
-Create a .env file in the server/ directory based on .env-example
+---
 
-Start the server:
+### 2. Database Setup
+**Option A: Using MySQL Command Line**
+```bash
+mysql -u root -p < server/setup-database.sql
+```
+**Option B: Manual Database Creation**
+```bash
+CREATE DATABASE request_quote;
 
+CREATE TABLE requests (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(255) NOT NULL,
+  email VARCHAR(255) NOT NULL,
+  phone VARCHAR(50),
+  service VARCHAR(255) NOT NULL,
+  message TEXT,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+```
+---
+
+### 3. Configure Environment Variables
+
+Copy the `.env.example` file to `.env` in the `server/` directory and fill in your own credentials:
+
+```bash
+cp .env.example .env
+```
+
+**Important:**
+
+Replace placeholders with real credentials
+Gmail requires an App Password
+.env is in .gitignore and won’t be committed
+---
+
+### 4. Start the Application
+**Backend:**
+```bash
+cd server
 node server.js
-
-Start the client:
-
+```
+**Frontend:**
+```bash
 cd client
-ng serve --port 4202
+ng serve
+```
 
-🔹 Why This Project Stands Out
+Application will run at: http://localhost:4200
 
-Demonstrates end-to-end full-stack development
+---
 
-Integrates real-world workflows: automated emails, Google Sheets updates, and user authentication
+## Troubleshooting
 
-Features a responsive Angular frontend with multiple pages and reusable components
+### MySQL Connection Issues
 
-Implements secure backend practices with JWT and session management
+**Access denied for user 'root'@'localhost'**
+- Ensure MySQL server is running
+- Verify your root password
+- Update `.env` with correct credentials
 
-Highlights ability to design complete system architecture from database to UI
+**Unknown database 'request_quote'**
+- Run the setup script or manually create the database
 
+**ER_ACCESS_DENIED_ERROR**
+- Verify username and password
+- Ensure the user has database permissions
 
+**Useful MySQL Commands**
+```bash
+mysql -u root -p
+SHOW DATABASES;
+USE request_quote;
+SHOW TABLES;
+DESCRIBE requests;
+```
+---
 
+## Notes
+- The application uses Angular Router for navigating between pages
+- Customer recommendations and projects are rendered dynamically from TypeScript arrays using `ngFor`
+- Admin login and session management are required to access submitted requests
