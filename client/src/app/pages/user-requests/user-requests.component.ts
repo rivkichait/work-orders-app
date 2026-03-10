@@ -26,7 +26,7 @@ export class UserRequestsComponent implements OnInit {
       return;
     }
     /** Gets the user requests from the backend. */
-    this.http.get<any>(`http://localhost:3000/user-requests?email=${encodeURIComponent(email)}`)
+    this.http.get<any>(`http://localhost:3000/user-requests?email=${encodeURIComponent(email)}`, { withCredentials: true })
       .subscribe({
         /** If the user requests are loaded successfully, set the requests and loading state. */
         next: (res) => {
@@ -34,8 +34,8 @@ export class UserRequestsComponent implements OnInit {
           this.loading = false;
         },
         /** If the user requests are not loaded successfully, set the error message and loading state. */
-        error: () => {
-          this.error = 'Failed to load requests.';
+        error: (err) => {
+          this.error = err?.error?.message || 'Failed to load requests.';
           this.loading = false;
         }
       });
