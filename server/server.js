@@ -143,7 +143,7 @@ app.get('/logout', (req, res) => {
 });
 
 app.use(cors({
-  origin: 'http://localhost:4202', /** The origin of the request. */
+  origin: ['http://localhost:4200', 'http://localhost:4202'], /** The origin of the request. */
   credentials: true
 }));
 
