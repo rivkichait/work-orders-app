@@ -5,6 +5,14 @@ The system stores requests in a MySQL database and sends notifications to the ad
 Admin users can log in, manage requests, and view submitted quotes in a secure dashboard.
 
 ---
+## 🎬 Project Demo
+
+<p align="center">
+  <video width="800" controls>
+    <source src="client/src/assets/demo.mp4" type="video/mp4">
+  </video>
+</p>
+---
 
 ## Technologies
 
