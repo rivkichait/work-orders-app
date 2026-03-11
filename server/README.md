@@ -7,11 +7,8 @@ Admin users can log in, manage requests, and view submitted quotes in a secure d
 ---
 ## 🎬 Project Demo
 
-<p align="center">
-  <video width="800" controls>
-    <source src="client/src/assets/demo.mp4" type="video/mp4">
-  </video>
-</p>
+[![Watch the demo](client/src/assets/demo-preview.png)](https://youtu.be/MOF6UwKryYw)
+
 ---
 
 ## Technologies
