@@ -6,6 +6,12 @@ Admin users can log in, manage requests, and view submitted quotes in a secure d
 
 ---
 
+## Project Demo
+
+[![Watch the demo](client/src/assets/demo-preview.png)](https://youtu.be/MOF6UwKryYw)
+
+---
+
 ## Technologies
 
 **Frontend**
